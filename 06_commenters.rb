@@ -1,5 +1,5 @@
 require 'pp'
-
+require_relative 'curriculum'
 # Require the Ruby file
 #
 # Print out the names of all the commenters
@@ -28,3 +28,15 @@ require 'pp'
 #   Jules Herzog
 #   Julia Hilll
 #   etc...
+users = Array.new
+CURRICULUM[:units].each do |unit|
+  unit[:lessons].each do |lesson|
+    lesson[:occurrences].each do |date, detail|
+      detail[:comments].each do |comment|
+        users << comment[:user][:name].to_s
+      end
+    end
+  end
+end
+users.join
+puts users.uniq
